@@ -16,12 +16,12 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="load-user-to-user-table-ld" author="ukson">
+    <changeSet id="load-user-to-user-table-ld" author="ukson" runOnChange="true">
         <insert tableName="users">
             <column name="id" value="1"/>
             <column name="username" value="admin"/>
             <column name="email" value="x@gmail.com"/>
-            <column name="password" value="admin1234" />
+            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
         </insert>
     </changeSet>
 
