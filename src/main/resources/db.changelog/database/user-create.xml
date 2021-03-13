@@ -1,0 +1,28 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-user-table-ct" author="ukson">
+        <createTable tableName="users">
+            <column name="id" type="BIGINT" />
+            <column name="username" type="varchar(255)" />
+            <column name="email" type="varchar(255)" />
+            <column name="password" type="varchar(255)" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="load-user-to-user-table-ld" author="ukson" runOnChange="true">
+        <insert tableName="users">
+            <column name="id" value="1"/>
+            <column name="username" value="admin"/>
+            <column name="email" value="x@gmail.com"/>
+            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
