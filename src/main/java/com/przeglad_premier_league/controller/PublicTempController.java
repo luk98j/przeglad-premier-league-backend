@@ -6,13 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/api/private")
-public class TempController {
+@RequestMapping("/rest/api/public")
+public class PublicTempController {
 
     @GetMapping("/temp")
-    public ResponseEntity<String> getTemp(){
-        return ResponseEntity.ok().body("Autoryzowany request");
+    public ResponseEntity<String> getPublicTemp(){
+        return ResponseEntity.ok().body("Nieautoryzowany request");
     }
-
-
 }
