@@ -16,6 +16,12 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
       log.error("Unauthorized error: {}", e.getMessage());
-      httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized");
+
+      if(e.getMessage()!=null && e.getMessage().equals("Bad credentials")) {
+          httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Podano błędne hasło");
+      }
+      else {
+          httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Brak użytkownika o podanym loginie. Załóż konto.");
+      }
     }
 }
