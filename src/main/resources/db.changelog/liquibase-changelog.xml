@@ -8,5 +8,10 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="db.changelog/database/user-create.xml" />
-
+    <include file="db.changelog/database/club-table.xml" />
+    <include file="db.changelog/database/season-period-table.xml" />
+    <include file="db.changelog/database/season-details-table.xml" />
+    <include file="db.changelog/database/KeysAndConstraints/club-table-constraint.xml" />
+    <include file="db.changelog/database/KeysAndConstraints/season-period-table-constraint.xml" />
+    <include file="db.changelog/database/KeysAndConstraints/season-details-table-constraint.xml" />
 </databaseChangeLog>

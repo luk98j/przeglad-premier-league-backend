@@ -1,4 +1,4 @@
-package com.przeglad_premier_league.model.Authentication;
+package com.przeglad_premier_league.model.authentication;
 
 
 import com.sun.istack.NotNull;

@@ -1,0 +1,17 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="primary-key-season-details-table-ct" author="ukson">
+        <addForeignKeyConstraint baseTableName="season_details_table" baseColumnNames="season_id" constraintName="foreignKeySeasonPeriodId"
+                                 referencedTableName="season_period_table" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="season_details_table" baseColumnNames="club_id" constraintName="foreignKeyClubId"
+                                 referencedTableName="club_table" referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
