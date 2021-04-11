@@ -1,7 +1,7 @@
 package com.przeglad_premier_league.config;
 
-import com.przeglad_premier_league.model.Authentication.User;
-import com.przeglad_premier_league.model.Authentication.UserRepository;
+import com.przeglad_premier_league.model.authentication.User;
+import com.przeglad_premier_league.model.authentication.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
