@@ -16,12 +16,114 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="load-user-to-user-table-ld" author="ukson" runOnChange="true">
+    <changeSet id="load-user-to-user-table-ld" author="ukson">
         <insert tableName="users">
             <column name="id" value="1"/>
             <column name="username" value="admin"/>
             <column name="email" value="x@gmail.com"/>
             <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="load-user-to-user-table-ld-v2" author="adam">
+        <insert tableName="users">
+            <column name="id" value="2"/>
+            <column name="username" value="adam"/>
+            <column name="email" value="x@gmail.com"/>
+            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="update-user-table-ld" author="adam">
+        <addColumn tableName="users">
+            <column name="country" type="varchar(255)" />
+            <column name="name" type="varchar(255)"/>
+            <column name="birthDate" type="date"/>
+            <column name="lastName" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="edit-user-in-user-table-ld" author="adam">
+        <update tableName="users">
+            <column name="country" value="Poland" />
+            <column name="name" value="Lukasz"/>
+            <column name="birthDate" value="1998-01-05"/>
+            <column name="lastName" value="Nowak"/>
+            <column name="email" value="luknowadm@gmail.com"/>
+            <where>id=1</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="edit-user-in-user-table-v2-ld" author="adam">
+        <update tableName="users">
+            <column name="country" value="Poland" />
+            <column name="name" value="Adam"/>
+            <column name="birthDate" value="1998-12-1"/>
+            <column name="lastName" value="Kowalski"/>
+            <column name="email" value="adamkowalski321@gmail.com"/>
+            <where>id=1</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="load-user-to-user-table-v3-ld" author="adam">
+        <insert tableName="users">
+            <column name="id" value="3"/>
+            <column name="username" value="wiola"/>
+            <column name="email" value="wiola1503@gmail.com"/>
+            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
+            <column name="country" value="Poland" />
+            <column name="name" value="Wioleta"/>
+            <column name="birthDate" value="1999-01-21"/>
+            <column name="lastName" value="Socha"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="load-user-to-user-table-v4-ld" author="adam">
+        <insert tableName="users">
+            <column name="id" value="4"/>
+            <column name="username" value="zolap"/>
+            <column name="email" value="przemek2@gmail.com"/>
+            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
+            <column name="country" value="Poland" />
+            <column name="name" value="Przemysław"/>
+            <column name="birthDate" value="1986-04-11"/>
+            <column name="lastName" value="Kubicki"/>
+        </insert>
+    </changeSet>
+    <changeSet id="load-user-to-user-table-v5-ld" author="adam">
+        <insert tableName="users">
+            <column name="id" value="5"/>
+            <column name="username" value="mistrz"/>
+            <column name="email" value="lorem@o2.pl"/>
+            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
+            <column name="country" value="Poland" />
+            <column name="name" value="Edmund"/>
+            <column name="birthDate" value="1963-10-12"/>
+            <column name="lastName" value="Jakubowski"/>
+        </insert>
+    </changeSet>
+    <changeSet id="load-user-to-user-table-v6-ld" author="adam">
+        <insert tableName="users">
+            <column name="id" value="6"/>
+            <column name="username" value="messi"/>
+            <column name="email" value="ipsum44@outlook.com"/>
+            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
+            <column name="country" value="Poland" />
+            <column name="name" value="Mikołaj"/>
+            <column name="birthDate" value="1987-04-04"/>
+            <column name="lastName" value="Finlandzki"/>
+        </insert>
+    </changeSet>
+    <changeSet id="load-user-to-user-table-v7-ld" author="adam">
+        <insert tableName="users">
+            <column name="id" value="7"/>
+            <column name="username" value="penalty"/>
+            <column name="email" value="fake11meters@onet.pl"/>
+            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
+            <column name="country" value="Poland" />
+            <column name="name" value="Robert"/>
+            <column name="birthDate" value="1995-08-30"/>
+            <column name="lastName" value="Jurczak"/>
         </insert>
     </changeSet>
 
