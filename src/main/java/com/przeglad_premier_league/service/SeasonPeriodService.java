@@ -32,6 +32,10 @@ public class SeasonPeriodService {
         }
     }
 
+    public List<SeasonPeriod> getAllSeasonsPeriod(){
+        return seasonPeriodRepository.findAll();
+    }
+
     private LocalDate createDate(String month, String year){
         return LocalDate.parse(year.concat(month));
     }
