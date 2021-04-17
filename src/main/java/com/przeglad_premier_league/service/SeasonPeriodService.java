@@ -33,6 +33,7 @@ public class SeasonPeriodService {
     }
 
     public List<SeasonPeriod> getAllSeasonsPeriod(){
+        System.out.println(seasonPeriodRepository.findAllOrderByEndDateDesc());
         return seasonPeriodRepository.findAll();
     }
 

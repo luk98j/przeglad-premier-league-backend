@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface SeasonPeriodRepository extends JpaRepository<SeasonPeriod, Long> {
     List<SeasonPeriod> findByPeriod(String period);
+    List<SeasonPeriod> findAllOrderByEndDateDesc();
 }
