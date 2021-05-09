@@ -1,5 +1,6 @@
 package com.przeglad_premier_league.model.season;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.przeglad_premier_league.model.club.Club;
 import lombok.*;
 
@@ -17,9 +18,11 @@ public class SeasonDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "season_id", nullable = false)
     private SeasonPeriod season;
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "club_id", nullable = false)
     private Club club;
