@@ -13,20 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/rest/api/public")
 @RequiredArgsConstructor
-public class SeasonController {
+@RestController
+@RequestMapping("/rest/api/private")
+public class ArchiveSeasonController {
 
     private final SeasonPeriodService seasonPeriodService;
     private final SeasonDetailsService seasonDetailsService;
 
-    @GetMapping("/season-list")
-    public ResponseEntity<List<SeasonPeriod>> getAllSeasonPeriods(){
-        return ResponseEntity.ok(seasonPeriodService.getAllSeasonsPeriod());
+    @GetMapping("/archive/season-list")
+    public ResponseEntity<List<SeasonPeriod>> getAllArchiveSeasonPeriods(){
+        return ResponseEntity.ok(seasonPeriodService.getArchiveSeasonsPeriod());
     }
 
-    @GetMapping("/season-table")
+    @GetMapping("/archive/season-table")
     public ResponseEntity<List<SeasonDetailsDTO>> getDetailsAboutSeason(@RequestParam String period){
         return ResponseEntity.ok(seasonDetailsService.getAllClubsBySeason(period));
     }

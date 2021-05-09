@@ -17,6 +17,10 @@ public class SeasonPeriodService {
     private static final String END_DATE = "-05-23";
 
     public SeasonPeriod getSeasonPeriod(String period){
+        if(!period.contains("/"))
+        {
+            period = addChar(period, '/', 4);
+        }
         String[] years= period.split("/");
         List<SeasonPeriod> seasonPeriods = seasonPeriodRepository.findByPeriod(period);
         if(seasonPeriods.isEmpty()){
@@ -33,11 +37,19 @@ public class SeasonPeriodService {
     }
 
     public List<SeasonPeriod> getAllSeasonsPeriod(){
-        System.out.println(seasonPeriodRepository.findAllOrderByEndDateDesc());
-        return seasonPeriodRepository.findAll();
+        return seasonPeriodRepository.findAllByOrderByStartDateDesc();
     }
 
+    public List<SeasonPeriod> getArchiveSeasonsPeriod(){
+        List<SeasonPeriod> seasonPeriods = seasonPeriodRepository.findAllByOrderByStartDateDesc();
+        seasonPeriods.remove(0);
+        return seasonPeriods;
+    }
     private LocalDate createDate(String month, String year){
         return LocalDate.parse(year.concat(month));
+    }
+
+    public String addChar(String str, char ch, int position) {
+        return str.substring(0, position) + ch + str.substring(position);
     }
 }
