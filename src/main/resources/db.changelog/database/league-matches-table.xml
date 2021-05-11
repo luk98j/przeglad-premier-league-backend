@@ -1,0 +1,49 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="league-matches-ct" author="adam">
+        <createTable tableName="league_matches_table">
+            <column name="id" type="BIGINT" />
+            <column name="match_id" type="varchar(255)" />
+            <column name="home_id" type="BIGINT" />
+            <column name="away_id" type="BIGINT" />
+            <column name="season_id" type="BIGINT" />
+            <column name="status" type="varchar(255)" />
+            <column name="round_id" type="varchar(255)" />
+            <column name="game_week" type="varchar(255)" />
+            <column name="home_goals" type="varchar(255)" />
+            <column name="away_goals" type="varchar(255)" />
+            <column name="home_goal_count" type="BIGINT" />
+            <column name="away_goal_count" type="BIGINT" />
+            <column name="team_a_corners" type="BIGINT" />
+            <column name="team_b_corners" type="BIGINT" />
+            <column name="team_a_offsides" type="BIGINT" />
+            <column name="team_b_offsides" type="BIGINT" />
+            <column name="team_a_yellow_cards" type="BIGINT" />
+            <column name="team_b_yellow_cards" type="BIGINT" />
+            <column name="team_a_red_cards" type="BIGINT" />
+            <column name="team_b_red_cards" type="BIGINT" />
+            <column name="team_a_shots_on_target" type="BIGINT" />
+            <column name="team_b_shots_on_target" type="BIGINT" />
+            <column name="team_a_shots_off_target" type="BIGINT" />
+            <column name="team_b_shots_off_target" type="BIGINT" />
+            <column name="team_a_shots" type="BIGINT" />
+            <column name="team_b_shots" type="BIGINT" />
+            <column name="team_a_fouls" type="BIGINT" />
+            <column name="team_b_fouls" type="BIGINT" />
+            <column name="team_a_possession" type="BIGINT" />
+            <column name="team_b_possession" type="BIGINT" />
+            <column name="stadium_name" type="varchar(255)" />
+            <column name="home_name" type="varchar(255)" />
+            <column name="away_name" type="varchar(255)" />
+
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

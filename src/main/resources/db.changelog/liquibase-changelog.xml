@@ -15,4 +15,7 @@
     <include file="db.changelog/database/KeysAndConstraints/season-period-table-constraint.xml" />
     <include file="db.changelog/database/KeysAndConstraints/season-details-table-constraint.xml" />
     <include file="db.changelog/database/season-keys.xml"/>
+    <include file="db.changelog/database/league-matches-table.xml"/>
+    <include file="db.changelog/database/KeysAndConstraints/league-matches-constraint.xml"/>
+
 </databaseChangeLog>
