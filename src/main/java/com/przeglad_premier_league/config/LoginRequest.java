@@ -1,14 +1,14 @@
 package com.przeglad_premier_league.config;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import javax.validation.constraints.NotBlank;
 
 @Setter
 @Getter
 public class LoginRequest {
-    @NotNull
-    private String userName;
-    @NotNull
+    @NotBlank
+    private String username;
+    @NotBlank
     private String password;
 }

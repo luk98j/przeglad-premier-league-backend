@@ -14,5 +14,4 @@ public class TempController {
         return ResponseEntity.ok().body("Autoryzowany request");
     }
 
-
 }
