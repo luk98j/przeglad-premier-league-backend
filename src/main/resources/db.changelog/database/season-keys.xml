@@ -18,6 +18,9 @@
     
     <changeSet id="add-keys-ld" author="ukson">
         <loadData  tableName="keys_table" file="db.changelog/database/keys.csv" separator=";"  />
-                
+    </changeSet>
+
+    <changeSet id="add-keys-ld-v1" author="ukson">
+        <loadData  tableName="keys_table" file="db.changelog/database/update-keys.csv" separator=";"  />
     </changeSet>
 </databaseChangeLog>
