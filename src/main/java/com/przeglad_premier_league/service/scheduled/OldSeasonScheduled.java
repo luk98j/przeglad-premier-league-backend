@@ -34,14 +34,16 @@ public class OldSeasonScheduled {
     private final SeasonDetailsRepository seasonDetailsRepository;
     @Value("${ppl.fdapi.key}")
     private String apiKey;
+    @Value("${ppl.season.id}")
+    private String seasonId;
     private static final String COUNTRY = "ENG";
 
     @Async
-    @Scheduled(cron = "0 */12 * * * ?")
+    @Scheduled(cron = "0 */45 * * * ?")
     public void downloadAllOldData(){
         List<Key> keyList = keysRepository.findAll();
         for (Key key:keyList) {
-            if(!key.isDownload()){
+            if(!key.isDownload() && key.getKeyId()!= Integer.valueOf(seasonId)){
                 JSONArray jsonArray = footballAPIService.getSeasonDetails(apiKey, String.valueOf(key.getKeyId()));
                 JSONObject object;
                 SeasonPeriod seasonPeriod = seasonPeriodService.getSeasonPeriod(key.getYear());

@@ -18,4 +18,14 @@ public class SeasonDetailsDTO {
     private int seasonWinsOverall;
     private int seasonDrawsOverall;
     private int seasonLossesOverall;
+    private int seasonWinsHome;
+    private int seasonDrawsHome;
+    private int seasonLossesHome;
+    private int seasonGoalsHome;
+    private int seasonConcededHome;
+    private int seasonWinsAway;
+    private int seasonDrawsAway;
+    private int seasonLossesAway;
+    private int seasonGoalsAway;
+    private int seasonConcededAway;
 }
