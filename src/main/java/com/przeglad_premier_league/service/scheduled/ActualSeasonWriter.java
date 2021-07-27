@@ -29,7 +29,6 @@ public class ActualSeasonWriter {
     private final ClubService clubService;
     private final SeasonDetailsRepository seasonDetailsRepository;
     private final SeasonPeriodService seasonPeriodService;
-    private static final String ACTUAL_SEASON = "2020/2021";
     private static final String COUNTRY = "ENG";
     @Value("${ppl.fdapi.key}")
     private String apiKey;
@@ -37,7 +36,7 @@ public class ActualSeasonWriter {
     private String seasonId;
 
     @Async
-    @Scheduled(cron = "0 0/30 * * * ?")
+    @Scheduled(cron = "0 0/20 * * * ?")
     public void saveActualSeason(){
         JSONArray jsonArray = footballAPIService.getSeasonDetails(apiKey, seasonId);
         JSONObject object;
