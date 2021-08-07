@@ -2,9 +2,11 @@ package com.przeglad_premier_league.model.season;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.przeglad_premier_league.model.club.Club;
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -13,8 +15,9 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class LeagueMatches {
+@ToString
+@Access(AccessType.FIELD)
+public class LeagueMatches implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -40,23 +43,41 @@ public class LeagueMatches {
     private String awayGoals;
     private int homeGoalCount;
     private int awayGoalCount;
-    private int teamACorners;
-    private int teamBCorners;
+    //@Column(name="team_a_corners")
+    private int teamHomeCorners;
+    //@Column(name="team_b_corners")
+    private int teamAwayCorners;
+    @Column(name="team_a_offsides")
     private int teamAOffsides;
+    @Column(name="team_b_offsides")
     private int teamBOffsides;
-    private int teamAYellow_cards;
-    private int teamBYellow_cards;
+    @Column(name="team_a_yellow_cards")
+    private int teamAYellowCards;
+    @Column(name="team_b_yellow_cards")
+    private int teamBYellowCards;
+    @Column(name="team_a_red_cards")
     private int teamARedCards;
+    @Column(name="team_b_red_cards")
     private int teamBRedCards;
+    @Column(name="team_a_shots_on_target")
     private int teamAShotsOnTarget;
+    @Column(name="team_b_shots_on_target")
     private int teamBShotsOnTarget;
+    @Column(name="team_a_shots_off_target")
     private int teamAShotsOffTarget;
+    @Column(name="team_b_shots_off_target")
     private int teamBShotsOffTarget;
+    @Column(name="team_a_shots")
     private int teamAShots;
+    @Column(name="team_b_shots")
     private int teamBShots;
+    @Column(name="team_a_fouls")
     private int teamAFouls;
+    @Column(name="team_b_fouls")
     private int teamBFouls;
+    @Column(name="team_a_possession")
     private int teamAPossession;
+    @Column(name="team_b_possession")
     private int teamBPossession;
     private String stadiumName;
     private String homeName;

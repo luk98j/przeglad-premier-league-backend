@@ -46,4 +46,8 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="change-column-name-v1" author="ukson">
+        <renameColumn tableName="league_matches_table" oldColumnName="team_a_corners" newColumnName="team_home_corners" />
+        <renameColumn tableName="league_matches_table" oldColumnName="team_b_corners" newColumnName="team_away_corners" />
+    </changeSet>
 </databaseChangeLog>

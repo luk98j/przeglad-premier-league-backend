@@ -23,4 +23,13 @@ public class ClubService {
             return clubList.get(0);
         }
     }
+
+    public Club getClubForLeagueMatches(String clubName){
+        List<Club> clubList = clubRepository.findByClubNameContains(clubName);
+        if(!clubList.isEmpty()){
+            return clubList.get(0);
+        } else {
+            return null;
+        }
+    }
 }
