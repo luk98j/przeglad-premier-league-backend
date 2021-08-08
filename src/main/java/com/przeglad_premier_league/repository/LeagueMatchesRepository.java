@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface LeagueMatchesRepository extends JpaRepository<LeagueMatches, Long> {
     List<LeagueMatches> findByMatchId(String matchId);
-    List<LeagueMatchesDTO> findAllBySeasonIdPeriod(String seasonIdPeriod);
+    List<LeagueMatchesDTO> findAllBySeasonIdPeriodOrderByMatchIdDesc(String seasonIdPeriod);
 }

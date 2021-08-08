@@ -14,6 +14,6 @@ public class LeagueMatchesService {
     private final LeagueMatchesRepository leagueMatchesRepository;
 
     public List<LeagueMatchesDTO> getAllMatches(String period){
-        return leagueMatchesRepository.findAllBySeasonIdPeriod(period);
+        return leagueMatchesRepository.findAllBySeasonIdPeriodOrderByMatchIdDesc(period);
     }
 }
