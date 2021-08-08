@@ -25,4 +25,6 @@ public class SeasonPeriod {
     private LocalDate endDate;
     @OneToMany(mappedBy = "season")
     private Set<SeasonDetails> seasonStats;
+    @OneToMany(mappedBy = "seasonId")
+    private Set<LeagueMatches> seasonId;
 }

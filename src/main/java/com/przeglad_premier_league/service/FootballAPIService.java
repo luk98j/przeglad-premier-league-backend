@@ -43,4 +43,15 @@ public class FootballAPIService {
         log.info("I have downloaded the data for the season {}", object.toString());
         return object.toString();
     }
+    public JSONArray getLeagueMatchesDetails(String apiKey, String seasonId) {
+        log.info("Data downloading");
+        Mono<String> response = webClientConfig.webClient()
+                .get().uri("/league-matches?key="+apiKey+"&season_id="+seasonId)
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToMono(String.class);
+        JSONObject json = new JSONObject(response.block());
+        log.info("Data downloading complete");
+        return json.getJSONArray("data");
+    }
 }
