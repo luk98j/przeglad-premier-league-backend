@@ -1,8 +1,10 @@
 package com.przeglad_premier_league.service.scheduled;
 
 import com.przeglad_premier_league.model.club.Club;
+import com.przeglad_premier_league.model.key.Key;
 import com.przeglad_premier_league.model.season.SeasonDetails;
 import com.przeglad_premier_league.model.season.SeasonPeriod;
+import com.przeglad_premier_league.repository.KeysRepository;
 import com.przeglad_premier_league.repository.SeasonDetailsRepository;
 import com.przeglad_premier_league.service.ClubService;
 import com.przeglad_premier_league.service.FootballAPIService;
@@ -23,39 +25,47 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 @EnableAsync
-public class ActualSeasonWriter {
+public class OldSeasonScheduled {
 
+    private final KeysRepository keysRepository;
     private final FootballAPIService footballAPIService;
+    private final SeasonPeriodService seasonPeriodService;
     private final ClubService clubService;
     private final SeasonDetailsRepository seasonDetailsRepository;
-    private final SeasonPeriodService seasonPeriodService;
-    private static final String COUNTRY = "ENG";
     @Value("${ppl.fdapi.key}")
     private String apiKey;
     @Value("${ppl.season.id}")
     private String seasonId;
+    private static final String COUNTRY = "ENG";
 
     @Async
-    @Scheduled(cron = "0 0/20 * * * ?")
-    public void saveActualSeason(){
-        JSONArray jsonArray = footballAPIService.getSeasonDetails(apiKey, seasonId);
-        JSONObject object;
-        SeasonPeriod seasonPeriod = seasonPeriodService.getSeasonPeriod(footballAPIService.getPeriodOfSeason(apiKey, seasonId));
-        log.info("I start parsing the season");
-        for (int i=0; i<jsonArray.length();i++){
-            object = jsonArray.getJSONObject(i);
-            Club club = clubService.getClubOrCreateNew(object.get("name").toString());
-            log.info("Data parsing for {}", club.getClubName());
-            List<SeasonDetails> seasonDetailsList = seasonDetailsRepository.findBySeasonIdAndClubId(seasonPeriod.getId(), club.getId());
-            if(seasonDetailsList.isEmpty()){
-                seasonDetailsRepository.save(seasonDetailsBuilder(club, seasonPeriod, object));
-            } else {
-                SeasonDetails seasonDetails = updateSeasonDetails(seasonDetailsList.get(0),object);
-                seasonDetailsRepository.save(seasonDetails);
+    @Scheduled(cron = "0 */45 * * * ?")
+    public void downloadAllOldData(){
+        List<Key> keyList = keysRepository.findAll();
+        for (Key key:keyList) {
+            if(!key.isDownload() && key.getKeyId()!= Integer.valueOf(seasonId)){
+                JSONArray jsonArray = footballAPIService.getSeasonDetails(apiKey, String.valueOf(key.getKeyId()));
+                JSONObject object;
+                SeasonPeriod seasonPeriod = seasonPeriodService.getSeasonPeriod(key.getYear());
+                log.info("I start parsing the old season " + key.getYear());
+                for (int i=0; i<jsonArray.length();i++) {
+                    object = jsonArray.getJSONObject(i);
+                    Club club = clubService.getClubOrCreateNew(object.get("name").toString());
+                    log.info("Data parsing for {}", club.getClubName());
+                    List<SeasonDetails> seasonDetailsList = seasonDetailsRepository.findBySeasonIdAndClubId(seasonPeriod.getId(), club.getId());
+                    if (seasonDetailsList.isEmpty()) {
+                        seasonDetailsRepository.save(seasonDetailsBuilder(club, seasonPeriod, object));
+                    } else {
+                        SeasonDetails seasonDetails = updateSeasonDetails(seasonDetailsList.get(0), object);
+                        seasonDetailsRepository.save(seasonDetails);
+                    }
+                }
+                key.setDownload(true);
+                keysRepository.save(key);
             }
         }
-
     }
+
     private SeasonDetails seasonDetailsBuilder(Club club, SeasonPeriod seasonPeriod, JSONObject object){
         return SeasonDetails.builder()
                 .season(seasonPeriod)

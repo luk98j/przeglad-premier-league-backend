@@ -1,5 +1,6 @@
 package com.przeglad_premier_league.model.club;
 
+import com.przeglad_premier_league.model.season.LeagueMatches;
 import com.przeglad_premier_league.model.season.SeasonDetails;
 import lombok.*;
 
@@ -20,4 +21,8 @@ public class Club {
     private String clubName;
     @OneToMany(mappedBy = "club")
     private Set<SeasonDetails> seasonStats;
+    @OneToMany(mappedBy = "homeId")
+    private Set<LeagueMatches> homeId;
+    @OneToMany(mappedBy = "awayId")
+    private Set<LeagueMatches> awayId;
 }

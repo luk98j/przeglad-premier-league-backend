@@ -1,0 +1,19 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="primary-key-league-matches-table" author="adam">
+        <addForeignKeyConstraint baseTableName="league_matches_table" baseColumnNames="home_id" constraintName="foreignKeyHomeId"
+                                 referencedTableName="club_table" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="league_matches_table" baseColumnNames="away_id" constraintName="foreignKeyAwayId"
+                                 referencedTableName="club_table" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="league_matches_table" baseColumnNames="season_id" constraintName="foreignKeySeasonId"
+                                 referencedTableName="season_period_table" referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

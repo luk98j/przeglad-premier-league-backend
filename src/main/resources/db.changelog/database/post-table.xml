@@ -1,0 +1,23 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="post-table-ct" author="ukson">
+        <createTable tableName="post_table">
+            <column name="id" type="BIGINT" />
+            <column name="title" type="varchar(512)" />
+            <column name="text" type="varchar(5096)" />
+            <column name="date" type="date" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="post-table-key-ct" author="ukson">
+        <addPrimaryKey tableName="post_table" columnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

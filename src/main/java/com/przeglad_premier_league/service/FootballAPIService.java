@@ -18,12 +18,7 @@ public class FootballAPIService {
     @Autowired
     private WebClientConfig webClientConfig;
 
-    @Value("${ppl.fdapi.key}")
-    private String apiKey;
-    @Value("${ppl.season.id}")
-    private String seasonId;
-
-    public JSONArray callActualSeasonAndParseItToDatabase() {
+    public JSONArray getSeasonDetails(String apiKey, String seasonId) {
         log.info("Data downloading");
         Mono<String> response = webClientConfig.webClient()
                 .get().uri("/league-tables?key="+apiKey+"&season_id="+seasonId)
@@ -35,7 +30,7 @@ public class FootballAPIService {
         return json.getJSONObject("data").getJSONArray("specific_tables").getJSONObject(0).getJSONArray("table");
     }
 
-    public String getPeriodOfSeason(){
+    public String getPeriodOfSeason(String apiKey, String seasonId){
         log.info("Data downloading");
         Mono<String> response = webClientConfig.webClient()
                 .get().uri("/league-tables?key="+apiKey+"&season_id="+seasonId)
@@ -47,5 +42,16 @@ public class FootballAPIService {
         log.info("Data downloading complete");
         log.info("I have downloaded the data for the season {}", object.toString());
         return object.toString();
+    }
+    public JSONArray getLeagueMatchesDetails(String apiKey, String seasonId) {
+        log.info("Data downloading");
+        Mono<String> response = webClientConfig.webClient()
+                .get().uri("/league-matches?key="+apiKey+"&season_id="+seasonId)
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToMono(String.class);
+        JSONObject json = new JSONObject(response.block());
+        log.info("Data downloading complete");
+        return json.getJSONArray("data");
     }
 }

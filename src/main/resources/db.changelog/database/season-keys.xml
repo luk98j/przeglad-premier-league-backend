@@ -1,0 +1,23 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="keys-table-ct" author="ukson">
+        <createTable tableName="keys_table">
+            <column name="id" type="BIGINT" />
+            <column name="key_id" type="BIGINT" />
+            <column name="year" type="VARCHAR"/>
+            <column name="is_download" type="BOOLEAN" />
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="add-keys-ld" author="ukson">
+        <loadData  tableName="keys_table" file="db.changelog/database/keys.csv" separator=";"  />
+    </changeSet>
+
+</databaseChangeLog>
