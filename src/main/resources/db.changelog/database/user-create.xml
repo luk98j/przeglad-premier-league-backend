@@ -7,6 +7,7 @@
    http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+<!--
     <changeSet id="create-user-table-ct" author="ukson">
         <createTable tableName="users">
             <column name="id" type="BIGINT" />
@@ -25,21 +26,12 @@
         </insert>
     </changeSet>
 
-    <changeSet id="load-user-to-user-table-ld-v2" author="adam">
-        <insert tableName="users">
-            <column name="id" value="2"/>
-            <column name="username" value="adam"/>
-            <column name="email" value="x@gmail.com"/>
-            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
-        </insert>
-    </changeSet>
-
     <changeSet id="update-user-table-ld" author="adam">
         <addColumn tableName="users">
             <column name="country" type="varchar(255)" />
             <column name="name" type="varchar(255)"/>
             <column name="birthDate" type="date"/>
-            <column name="lastName" type="varchar(255)"/>
+            <column name="last_name" type="varchar(255)"/>
         </addColumn>
     </changeSet>
 
@@ -65,65 +57,83 @@
         </update>
     </changeSet>
 
-    <changeSet id="load-user-to-user-table-v3-ld" author="adam">
+-->
+
+    <changeSet id="create-user-table-ct" author="Wiola">
+        <createTable tableName="users">
+            <column name="id" type="serial" />
+            <column name="username" type="varchar(255)" />
+            <column name="email" type="varchar(255)" />
+            <column name="password" type="varchar(255)" />
+            <column name="country" type="varchar(255)" />
+            <column name="name" type="varchar(255)"/>
+            <column name="last_name" type="varchar(255)"/>
+            <column name="birth_date" type="date"/>
+            <column name="confirmationid" type="varchar(255)"/>
+            <column name="enabled" type="boolean"/>
+        </createTable>
+        <addPrimaryKey tableName="users" columnNames="id"/>
+    </changeSet>
+
+    <changeSet id="load-user-to-user-table-ld" author="Wiola">
         <insert tableName="users">
-            <column name="id" value="3"/>
-            <column name="username" value="wiola"/>
-            <column name="email" value="wiola1503@gmail.com"/>
+            <column name="id" value="1"/>
+            <column name="username" value="admin"/>
+            <column name="email" value="x@gmail.com"/>
             <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
-            <column name="country" value="Poland" />
-            <column name="name" value="Wioleta"/>
-            <column name="birthDate" value="1999-01-21"/>
-            <column name="lastName" value="Socha"/>
+            <column name="country" value="Polska" />
+            <column name="name" value="Admin"/>
+            <column name="last_name" value="Admin"/>
+            <column name="birth_date" value="1900-01-01"/>
+            <column name="confirmationid" value="xD"/>
+            <column name="enabled" value="True"/>
         </insert>
     </changeSet>
 
-    <changeSet id="load-user-to-user-table-v4-ld" author="adam">
-        <insert tableName="users">
-            <column name="id" value="4"/>
-            <column name="username" value="zolap"/>
-            <column name="email" value="przemek2@gmail.com"/>
-            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
-            <column name="country" value="Poland" />
-            <column name="name" value="Przemysław"/>
-            <column name="birthDate" value="1986-04-11"/>
-            <column name="lastName" value="Kubicki"/>
+    <changeSet id="create-roles-table-ct" author="Wiola">
+        <createTable tableName="roles">
+            <column name="id" type="integer" />
+            <column name="name" type="varchar(255)"/>
+        </createTable>
+        <addPrimaryKey tableName="ROLES" columnNames="id"/>
+    </changeSet>
+
+    <changeSet id="load-roles-to-roles-table-ld" author="Wiola">
+        <insert tableName="roles">
+            <column name="id" value="1"/>
+            <column name="name" value="ROLE_ADMIN"/>
         </insert>
     </changeSet>
-    <changeSet id="load-user-to-user-table-v5-ld" author="adam">
-        <insert tableName="users">
-            <column name="id" value="5"/>
-            <column name="username" value="mistrz"/>
-            <column name="email" value="lorem@o2.pl"/>
-            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
-            <column name="country" value="Poland" />
-            <column name="name" value="Edmund"/>
-            <column name="birthDate" value="1963-10-12"/>
-            <column name="lastName" value="Jakubowski"/>
+
+    <changeSet id="load-roles-to-roles-table-v2-ld" author="Wiola">
+        <insert tableName="roles">
+            <column name="id" value="2"/>
+            <column name="name" value="ROLE_MODERATOR"/>
         </insert>
     </changeSet>
-    <changeSet id="load-user-to-user-table-v6-ld" author="adam">
-        <insert tableName="users">
-            <column name="id" value="6"/>
-            <column name="username" value="messi"/>
-            <column name="email" value="ipsum44@outlook.com"/>
-            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
-            <column name="country" value="Poland" />
-            <column name="name" value="Mikołaj"/>
-            <column name="birthDate" value="1987-04-04"/>
-            <column name="lastName" value="Finlandzki"/>
+
+    <changeSet id="load-roles-to-roles-table-v3-ld" author="Wiola">
+        <insert tableName="roles">
+            <column name="id" value="3"/>
+            <column name="name" value="ROLE_USER"/>
         </insert>
     </changeSet>
-    <changeSet id="load-user-to-user-table-v7-ld" author="adam">
-        <insert tableName="users">
-            <column name="id" value="7"/>
-            <column name="username" value="penalty"/>
-            <column name="email" value="fake11meters@onet.pl"/>
-            <column name="password" value="$2a$10$ChR7Ic7G93rI1R/TWoUuYOW9kphzUbnsf6YB9Zo/poAXWVolpzey6" />
-            <column name="country" value="Poland" />
-            <column name="name" value="Robert"/>
-            <column name="birthDate" value="1995-08-30"/>
-            <column name="lastName" value="Jurczak"/>
+
+    <changeSet id="create-user_roles-table-ct" author="Wiola">
+        <createTable tableName="user_roles">
+            <column name="user_id" type="serial">
+                <constraints foreignKeyName="user_id" referencedColumnNames="id" referencedTableName="users"/>
+            </column>
+            <column name="role_id" type="integer">
+                <constraints foreignKeyName="role_id" referencedColumnNames="id" referencedTableName="roles"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="load-user_roles-to-user_roles-table-ld" author="Wiola">
+        <insert tableName="user_roles">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
         </insert>
     </changeSet>
 

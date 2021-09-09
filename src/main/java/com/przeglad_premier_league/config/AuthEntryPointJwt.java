@@ -1,27 +1,30 @@
 package com.przeglad_premier_league.config;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.stereotype.Component;
+import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
-    @Override
-    public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-      log.error("Unauthorized error: {}", e.getMessage());
 
-      if(e.getMessage()!=null && e.getMessage().equals("Bad credentials")) {
-          httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Podano błędne hasło");
-      }
-      else {
-          httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Brak użytkownika o podanym loginie. Załóż konto.");
-      }
+    private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
+
+    @Override
+    public void commence(HttpServletRequest request, HttpServletResponse response,
+                         AuthenticationException authException) throws IOException, ServletException {
+        logger.error("Unauthorized error: {}", authException.getMessage());
+        if(authException.getMessage() == "User is disabled")
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Użytkownik nie jest aktywowany");
+        else
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Podano błędny login lub hasło");
     }
+
 }
