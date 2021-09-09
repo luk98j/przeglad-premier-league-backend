@@ -64,6 +64,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @JsonFormat(pattern="yyyy-mm-dd")
+    @Column(name="TIMESTAMP")
+    private Date timeStamp;
 
     public User() {
     }
@@ -77,6 +80,7 @@ public class User {
         this.birthDate = new Date(birtDate.getTime());
         this.password = password;
         this.enabled = false;
+        this.timeStamp = new Date();
     }
 
     public boolean isEnabled(){

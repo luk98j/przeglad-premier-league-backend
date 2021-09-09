@@ -69,8 +69,8 @@ public class SignupService {
         user.setRoles(roles);
         user.setConfirmationID(createconfirmationID());
         Context context = new Context();
-        context.setVariable("header", "Przeglad premier league");
-        context.setVariable("title", "Rejestracja");
+        context.setVariable("header", "Przeglad Premier League");
+        context.setVariable("title", "Potwierdzenie rejestracji");
         context.setVariable("description", "Aktywuj konto klikając w poniższy link: " + "http://localhost:3002/confirm/" + user.getConfirmationID());
         String body = templateEngine.process("template", context);
 
