@@ -8,14 +8,7 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
 <!--
-    <changeSet id="create-user-table-ct" author="ukson">
-        <createTable tableName="users">
-            <column name="id" type="BIGINT" />
-            <column name="username" type="varchar(255)" />
-            <column name="email" type="varchar(255)" />
-            <column name="password" type="varchar(255)" />
-        </createTable>
-    </changeSet>
+
 
     <changeSet id="load-user-to-user-table-ld" author="ukson">
         <insert tableName="users">
@@ -71,6 +64,7 @@
             <column name="birth_date" type="date"/>
             <column name="confirmationid" type="varchar(255)"/>
             <column name="enabled" type="boolean"/>
+            <column name="TIMESTAMP" type="date"/>
         </createTable>
         <addPrimaryKey tableName="users" columnNames="id"/>
     </changeSet>
