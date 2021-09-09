@@ -25,11 +25,13 @@ public class User {
 
     @NotBlank
     @Size(max = 20)
+    @Column(name = "username")
     private String username;
 
     @NotBlank
     @Size(max = 50)
     @Email
+    @Column(name = "email")
     private String email;
 
     @NotBlank
@@ -42,17 +44,19 @@ public class User {
 
     @NotBlank
     @Size(max = 50)
-    @Column(name="lastName")
+    @Column(name="last_Name")
     private String lastName;
 
     @JsonFormat(pattern="yyyy-mm-dd")
-    @Column(name="birthDate")
+    @Column(name="birth_date")
     private Date birthDate;
 
     @NotBlank
     @Size(max = 120)
+    @Column
     private String password;
 
+    @Column
     private Boolean enabled;
 
     @Column(name="confirmationID")
@@ -65,7 +69,7 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     @JsonFormat(pattern="yyyy-mm-dd")
-    @Column(name="TIMESTAMP")
+    @Column(name="timestamp")
     private Date timeStamp;
 
     public User() {
