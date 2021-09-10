@@ -39,7 +39,7 @@ public class SignupService {
 
         if (strRoles == null) {
             String role = ERole.ROLE_USER.name();
-            Role userRole = roleRepository.findByName(role)
+            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);
         } else {

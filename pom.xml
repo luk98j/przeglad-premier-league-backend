@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>6.0.0.Alpha7</version>
+			<version>5.4.15.Final</version>
 		</dependency>
 
 		<dependency>
@@ -112,7 +112,12 @@
 			<artifactId>reactor-core</artifactId>
 			<version>3.4.3</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.vaadin.external.google</groupId>
+            <artifactId>android-json</artifactId>
+            <version>0.0.20131108.vaadin1</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
